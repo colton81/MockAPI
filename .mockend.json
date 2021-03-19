@@ -1,13 +1,133 @@
 {
-  "Post": {
-    "title": "string",
-    "views": "int",
-    "published": "boolean",
-    "createdAt": "date",
-    "comments": "Comment[]"
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+    {
+      "item": [
+        {
+          "description": "The Dow Jones Industrial Average slid from record highs at the end of February, as the current stock market pullback continues. The best Dow Jones stocks to buy and watch in March 2021 are Apple, Disney, Microsoft and Visa.",
+          "guid": "65b53896-faf4-3a06-9d0d-a63cf3c83192",
+          "link": "https://finance.yahoo.com/m/65b53896-faf4-3a06-9d0d-a63cf3c83192/best-dow-jones-stocks-to-buy.html?.tsrc=rss",
+          "pubDate": "Fri, 19 Mar 2021 14:02:33 +0000",
+          "title": "Best Dow Jones Stocks To Buy And Watch In March 2021: Apple Rallies, Nike Dives 5% On Earnings"
+        }
+      ],
+      "language": "en-US",
+      "lastBuildDate": "Fri, 19 Mar 2021 14:49:44 +0000"
+    }
+  ],
+  "required": ["item", "language", "lastBuildDate"],
+  "properties": {
+    "item": {
+      "$id": "#/properties/item",
+      "type": "array",
+      "title": "The item schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "description": "The Dow Jones Industrial Average slid from record highs at the end of February, as the current stock market pullback continues. The best Dow Jones stocks to buy and watch in March 2021 are Apple, Disney, Microsoft and Visa.",
+            "guid": "65b53896-faf4-3a06-9d0d-a63cf3c83192",
+            "link": "https://finance.yahoo.com/m/65b53896-faf4-3a06-9d0d-a63cf3c83192/best-dow-jones-stocks-to-buy.html?.tsrc=rss",
+            "pubDate": "Fri, 19 Mar 2021 14:02:33 +0000",
+            "title": "Best Dow Jones Stocks To Buy And Watch In March 2021: Apple Rallies, Nike Dives 5% On Earnings"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/item/items",
+        "anyOf": [
+          {
+            "$id": "#/properties/item/items/anyOf/0",
+            "type": "object",
+            "title": "The first anyOf schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+            "examples": [
+              {
+                "description": "The Dow Jones Industrial Average slid from record highs at the end of February, as the current stock market pullback continues. The best Dow Jones stocks to buy and watch in March 2021 are Apple, Disney, Microsoft and Visa.",
+                "guid": "65b53896-faf4-3a06-9d0d-a63cf3c83192",
+                "link": "https://finance.yahoo.com/m/65b53896-faf4-3a06-9d0d-a63cf3c83192/best-dow-jones-stocks-to-buy.html?.tsrc=rss",
+                "pubDate": "Fri, 19 Mar 2021 14:02:33 +0000",
+                "title": "Best Dow Jones Stocks To Buy And Watch In March 2021: Apple Rallies, Nike Dives 5% On Earnings"
+              }
+            ],
+            "required": ["description", "guid", "link", "pubDate", "title"],
+            "properties": {
+              "description": {
+                "$id": "#/properties/item/items/anyOf/0/properties/description",
+                "type": "string",
+                "title": "The description schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "The Dow Jones Industrial Average slid from record highs at the end of February, as the current stock market pullback continues. The best Dow Jones stocks to buy and watch in March 2021 are Apple, Disney, Microsoft and Visa."
+                ]
+              },
+              "guid": {
+                "$id": "#/properties/item/items/anyOf/0/properties/guid",
+                "type": "string",
+                "title": "The guid schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["65b53896-faf4-3a06-9d0d-a63cf3c83192"]
+              },
+              "link": {
+                "$id": "#/properties/item/items/anyOf/0/properties/link",
+                "type": "string",
+                "title": "The link schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "https://finance.yahoo.com/m/65b53896-faf4-3a06-9d0d-a63cf3c83192/best-dow-jones-stocks-to-buy.html?.tsrc=rss"
+                ]
+              },
+              "pubDate": {
+                "$id": "#/properties/item/items/anyOf/0/properties/pubDate",
+                "type": "string",
+                "title": "The pubDate schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": ["Fri, 19 Mar 2021 14:02:33 +0000"]
+              },
+              "title": {
+                "$id": "#/properties/item/items/anyOf/0/properties/title",
+                "type": "string",
+                "title": "The title schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": "",
+                "examples": [
+                  "Best Dow Jones Stocks To Buy And Watch In March 2021: Apple Rallies, Nike Dives 5% On Earnings"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "language": {
+      "$id": "#/properties/language",
+      "type": "string",
+      "title": "The language schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["en-US"]
+    },
+    "lastBuildDate": {
+      "$id": "#/properties/lastBuildDate",
+      "type": "string",
+      "title": "The lastBuildDate schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": "",
+      "examples": ["Fri, 19 Mar 2021 14:49:44 +0000"]
+    }
   },
-  "Comment": {
-    "body": "string",
-    "post": "Post"
-  }
+  "additionalProperties": true
 }
