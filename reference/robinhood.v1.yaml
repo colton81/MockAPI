@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  title: robinhood
+  version: '1.0'
+  contact:
+    name: Colton
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /feed:
+    get:
+      summary: News
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  next: {}
+                  previous: {}
+                  results:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        display_label:
+                          type: string
+                          minLength: 1
+                        category:
+                          type: string
+                          minLength: 1
+                        templates:
+                          type: array
+                          items:
+                            type: object
+                        contents:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: object
+                            properties:
+                              content_type:
+                                type: string
+                                minLength: 1
+                              data:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  display_name:
+                                    type: string
+                                    minLength: 1
+                                  image_urls:
+                                    type: object
+                                    required:
+                                      - 'circle_28:1'
+                                      - 'circle_28:2'
+                                      - 'circle_28:3'
+                                      - 'circle_64:1'
+                                      - 'circle_64:2'
+                                      - 'circle_64:3'
+                                      - 'header_mob:1'
+                                      - 'header_mob:2'
+                                      - 'header_mob:3'
+                                      - 'header_web:1'
+                                      - 'header_web:2'
+                                      - 'header_web:3'
+                                      - 'circle_28:1.5'
+                                      - 'circle_64:1.5'
+                                      - 'portrait_48:1'
+                                      - 'portrait_48:2'
+                                      - 'portrait_48:3'
+                                      - 'header_mob:1.5'
+                                      - 'header_web:1.5'
+                                      - 'portrait_48:1.5'
+                                    properties:
+                                      'circle_28:1':
+                                        type: string
+                                        minLength: 1
+                                      'circle_28:2':
+                                        type: string
+                                        minLength: 1
+                                      'circle_28:3':
+                                        type: string
+                                        minLength: 1
+                                      'circle_64:1':
+                                        type: string
+                                        minLength: 1
+                                      'circle_64:2':
+                                        type: string
+                                        minLength: 1
+                                      'circle_64:3':
+                                        type: string
+                                        minLength: 1
+                                      'header_mob:1':
+                                        type: string
+                                        minLength: 1
+                                      'header_mob:2':
+                                        type: string
+                                        minLength: 1
+                                      'header_mob:3':
+                                        type: string
+                                        minLength: 1
+                                      'header_web:1':
+                                        type: string
+                                        minLength: 1
+                                      'header_web:2':
+                                        type: string
+                                        minLength: 1
+                                      'header_web:3':
+                                        type: string
+                                        minLength: 1
+                                      'circle_28:1.5':
+                                        type: string
+                                        minLength: 1
+                                      'circle_64:1.5':
+                                        type: string
+                                        minLength: 1
+                                      'portrait_48:1':
+                                        type: string
+                                        minLength: 1
+                                      'portrait_48:2':
+                                        type: string
+                                        minLength: 1
+                                      'portrait_48:3':
+                                        type: string
+                                        minLength: 1
+                                      'header_mob:1.5':
+                                        type: string
+                                        minLength: 1
+                                      'header_web:1.5':
+                                        type: string
+                                        minLength: 1
+                                      'portrait_48:1.5':
+                                        type: string
+                                        minLength: 1
+                                  owner_type:
+                                    type: string
+                                    minLength: 1
+                                  item_count:
+                                    type: number
+                                required:
+                                  - id
+                                  - display_name
+                                  - image_urls
+                                  - owner_type
+                                  - item_count
+                              id:
+                                type: string
+                                minLength: 1
+                              reason: {}
+                              instrument_id: {}
+                              instrument_sector: {}
+                            required:
+                              - content_type
+                              - id
+                        url:
+                          type: string
+                          minLength: 1
+                        description: {}
+                        ranking_version:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                          minLength: 1
+                      required:
+                        - url
+                        - ranking_version
+                        - id
+                required:
+                  - results
+      operationId: get-feed
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: credentials
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: referrer
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      x-examples:
+        Alice Smith:
+          id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      in: header
+      name: Bearer Token
